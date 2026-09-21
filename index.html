@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0a0a1f">
+  <title>Te Amo Innis 🌌💛</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #050510;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #fff;
+      touch-action: manipulation;
+    }
+
+    /* Galaxy background */
+    .galaxy {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, #1a0a2e 0%, #0a0a1f 40%, #000000 100%);
+      overflow: hidden;
+    }
+
+    /* Nebula glow - more layers for deeper galaxy */
+    .nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      animation: nebulaPulse 14s ease-in-out infinite alternate;
+    }
+    .nebula1 {
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle, #5a1c8b 0%, transparent 70%);
+      top: -20%;
+      left: -20%;
+    }
+    .nebula2 {
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, #1c4a8b 0%, transparent 70%);
+      bottom: -15%;
+      right: -15%;
+      animation-delay: -4s;
+    }
+    .nebula3 {
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, #8b5a1c 0%, transparent 70%);
+      top: 35%;
+      left: 45%;
+      animation-delay: -8s;
+    }
+    .nebula4 {
+      width: 35vw;
+      height: 35vw;
+      background: radial-gradient(circle, #8b1c5a 0%, transparent 70%);
+      top: 10%;
+      right: 10%;
+      animation-delay: -2s;
+    }
+    .nebula5 {
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, #2a1c6b 0%, transparent 70%);
+      bottom: 20%;
+      left: 20%;
+      animation-delay: -10s;
+    }
+
+    @keyframes nebulaPulse {
+      0% { opacity: 0.2; transform: scale(1); }
+      100% { opacity: 0.55; transform: scale(1.2); }
+    }
+
+    /* Stars - multiple layers */
+    .stars {
+      position: absolute;
+      inset: 0;
+    }
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--duration) ease-in-out infinite;
+    }
+    .star.bright {
+      box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.8);
+    }
+    .star.yellow {
+      background: #ffeb3b;
+      box-shadow: 0 0 8px 2px rgba(255, 235, 59, 0.6);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); transform: scale(1); }
+      50% { opacity: 0.15; transform: scale(0.6); }
+    }
+
+    /* Shooting stars */
+    .shooting-star {
+      position: absolute;
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, #fff, #ffeb3b, transparent);
+      border-radius: 50%;
+      animation: shoot 3.5s linear infinite;
+      opacity: 0;
+      box-shadow: 0 0 6px #fff;
+    }
+    @keyframes shoot {
+      0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; }
+      5% { opacity: 1; }
+      25% { opacity: 1; }
+      100% { transform: translateX(500px) translateY(500px) rotate(-45deg); opacity: 0; }
+    }
+
+    /* Central message */
+    .center-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 20;
+      pointer-events: none;
+    }
+    .main-text {
+      font-size: clamp(2.2rem, 9vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #ffeb3b, #ff9800, #ffeb3b, #fff59d);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(255, 235, 59, 0.6);
+      animation: glowText 3s ease-in-out infinite, gradientShift 5s ease infinite;
+      line-height: 1.2;
+    }
+    .sub-text {
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      margin-top: 12px;
+      color: #ffe082;
+      opacity: 0.9;
+      text-shadow: 0 0 15px rgba(255, 224, 130, 0.5);
+      animation: fadeInUp 2s ease 0.5s both;
+    }
+    @keyframes glowText {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 235, 59, 0.7)); }
+      50% { filter: drop-shadow(0 0 30px rgba(255, 193, 7, 1)); }
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 0.9; transform: translateY(0); }
+    }
+
+    /* Floating messages */
+    .floating-msg {
+      position: absolute;
+      font-size: clamp(0.85rem, 3.2vw, 1.15rem);
+      color: #fff8e1;
+      text-shadow: 0 0 10px rgba(255, 235, 59, 0.4);
+      white-space: nowrap;
+      opacity: 0;
+      animation: floatUp linear infinite;
+      pointer-events: none;
+      z-index: 10;
+      font-weight: 500;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.9;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-110vh) rotate(var(--rot));
+        opacity: 0;
+      }
+    }
+
+    /* Yellow flowers */
+    .flower {
+      position: absolute;
+      font-size: clamp(1.8rem, 6vw, 3.2rem);
+      animation: flowerFloat linear infinite;
+      pointer-events: none;
+      z-index: 5;
+      filter: drop-shadow(0 0 10px rgba(255, 235, 59, 0.7));
+    }
+    @keyframes flowerFloat {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.7);
+        opacity: 0;
+      }
+      8% {
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-60vh) translateX(15px) rotate(360deg) scale(1.05);
+      }
+      92% {
+        opacity: 0.95;
+      }
+      100% {
+        transform: translateY(-125vh) translateX(-20px) rotate(720deg) scale(1.15);
+        opacity: 0;
+      }
+    }
+
+    /* Hearts */
+    .heart {
+      position: absolute;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      color: #ff6b9d;
+      animation: heartFloat linear infinite;
+      pointer-events: none;
+      z-index: 8;
+      filter: drop-shadow(0 0 6px rgba(255, 107, 157, 0.7));
+    }
+    @keyframes heartFloat {
+      0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0;
+      }
+      15% {
+        opacity: 1;
+      }
+      85% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-115vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Bottom hint */
+    .hint {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      z-index: 30;
+      text-align: center;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Sparkle particles */
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #ffeb3b;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #ffeb3b;
+      animation: sparkleAnim 3s ease-in-out infinite;
+    }
+    @keyframes sparkleAnim {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="galaxy">
+    <div class="nebula nebula1"></div>
+    <div class="nebula nebula2"></div>
+    <div class="nebula nebula3"></div>
+    <div class="nebula nebula4"></div>
+    <div class="nebula nebula5"></div>
+    <div class="stars" id="stars"></div>
+    
+    <div class="center-message">
+      <div class="main-text">Te amo Innis</div>
+      <div class="sub-text">💛 Para siempre 💛</div>
+    </div>
+  </div>
+
+  <div class="hint">Toca la pantalla para más 💛</div>
+
+  <script>
+    // Generate many more stars (dense galaxy)
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 450; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 2.8 + 0.4;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.setProperty('--opacity', Math.random() * 0.75 + 0.25);
+      star.style.setProperty('--duration', (Math.random() * 5 + 1.5) + 's');
+      star.style.animationDelay = Math.random() * 6 + 's';
+      
+      // Some brighter stars and yellow ones
+      if (Math.random() > 0.88) star.classList.add('bright');
+      if (Math.random() > 0.92) star.classList.add('yellow');
+      
+      starsContainer.appendChild(star);
+    }
+
+    // Shooting stars - more frequent
+    function createShootingStar() {
+      const s = document.createElement('div');
+      s.className = 'shooting-star';
+      s.style.left = Math.random() * 75 + '%';
+      s.style.top = Math.random() * 45 + '%';
+      s.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      document.querySelector('.galaxy').appendChild(s);
+      setTimeout(() => s.remove(), 4500);
+    }
+    setInterval(createShootingStar, 2200);
+    setTimeout(createShootingStar, 800);
+    setTimeout(createShootingStar, 1800);
+
+    // Romantic messages
+    const messages = [
+      "Eres mi universo ✨",
+      "Te quiero más cada día 💛",
+      "Mi amor eterno 🌸",
+      "Contigo todo brilla 🌟",
+      "Eres mi galaxia favorita 🌌",
+      "Mi corazón es tuyo ❤️",
+      "Siempre juntos 💫",
+      "Eres mi sueño hecho realidad 🌻",
+      "Te amo con todo mi ser 💕",
+      "Mi sol y mis estrellas ☀️",
+      "Gracias por existir 🌼",
+      "Eres perfecta para mí 💖",
+      "Amor de mi vida 🌹",
+      "Juntos hasta el infinito 🚀",
+      "Mi razón de sonreír 😊",
+      "Eres mi hogar 🏡",
+      "Te adoro Innis 💛",
+      "Mi princesa de las estrellas 👑",
+      "Cada día te amo más 🌺",
+      "Eres mi todo ✨"
+    ];
+
+    function createFloatingMessage() {
+      const msg = document.createElement('div');
+      msg.className = 'floating-msg';
+      msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+      msg.style.left = Math.random() * 80 + 10 + '%';
+      msg.style.bottom = '-50px';
+      const duration = Math.random() * 8 + 10;
+      msg.style.animationDuration = duration + 's';
+      msg.style.setProperty('--rot', (Math.random() * 30 - 15) + 'deg');
+      document.querySelector('.galaxy').appendChild(msg);
+      setTimeout(() => msg.remove(), duration * 1000);
+    }
+
+    // Many more yellow flowers and flower emojis
+    const flowers = [
+      '🌼', '🌻', '🌸', '🌺', '🌷', '💐', '🌹', '💮',
+      '🌼', '🌻', '🌼', '🌻', '🌸', '💛', '✨', '🌟',
+      '🌼', '🌻', '🌼', '🌻', '🌼', '🌻', '🌸', '💛'
+    ];
+    function createFlower() {
+      const f = document.createElement('div');
+      f.className = 'flower';
+      f.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+      f.style.left = Math.random() * 96 + '%';
+      f.style.bottom = '-70px';
+      const duration = Math.random() * 9 + 11;
+      f.style.animationDuration = duration + 's';
+      f.style.fontSize = (Math.random() * 1.8 + 1.6) + 'rem';
+      document.querySelector('.galaxy').appendChild(f);
+      setTimeout(() => f.remove(), duration * 1000);
+    }
+
+    // Hearts
+    function createHeart() {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = Math.random() > 0.5 ? '💛' : '❤️';
+      h.style.left = Math.random() * 90 + 5 + '%';
+      h.style.bottom = '-40px';
+      const duration = Math.random() * 7 + 9;
+      h.style.animationDuration = duration + 's';
+      document.querySelector('.galaxy').appendChild(h);
+      setTimeout(() => h.remove(), duration * 1000);
+    }
+
+    // Sparkles near center
+    function createSparkle() {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = (40 + Math.random() * 20) + '%';
+      s.style.top = (40 + Math.random() * 20) + '%';
+      s.style.animationDelay = Math.random() * 2 + 's';
+      document.querySelector('.galaxy').appendChild(s);
+      setTimeout(() => s.remove(), 3000);
+    }
+
+    // Initial burst - denser
+    for (let i = 0; i < 12; i++) {
+      setTimeout(createFloatingMessage, i * 400);
+      setTimeout(createFlower, i * 280);
+      setTimeout(createHeart, i * 500);
+    }
+
+    // Continuous generation - more frequent flowers & stars feel
+    setInterval(createFloatingMessage, 1800);
+    setInterval(createFlower, 900);      // muchas más flores
+    setInterval(createHeart, 2000);
+    setInterval(createSparkle, 1200);
+
+    // Tap interaction - lluvia de flores y mensajes
+    document.body.addEventListener('click', () => {
+      for (let i = 0; i < 8; i++) {
+        setTimeout(createFloatingMessage, i * 120);
+        setTimeout(createFlower, i * 80);
+        setTimeout(createHeart, i * 100);
+      }
+    });
+
+    // Prevent zoom on double tap
+    document.addEventListener('dblclick', e => e.preventDefault());
+  </script>
+</body>
+</html>
